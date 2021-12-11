@@ -1,6 +1,7 @@
 from check_userInput import *
 from searchQuery import *
 import requests
+from bs4 import BeautifulSoup
 
 # get disired hob title from the user:
 desired_job = input("Enter job title: ")
@@ -12,6 +13,9 @@ print(job_url)
 
 # fetch the obrained URL, then get page content:
 page_content = requests.get(job_url).content
-print(page_content)
+
+# parse markup page content using "lxml" parser:
+soup_content = BeautifulSoup(page_content, "lxml")
+print(soup_content.prettify())          # format output with indent
 
 print("Done!")
