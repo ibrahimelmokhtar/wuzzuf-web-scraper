@@ -16,6 +16,9 @@ page_content = requests.get(job_url).content
 
 # parse markup page content using "lxml" parser:
 soup_content = BeautifulSoup(page_content, "lxml")
-print(soup_content.prettify())          # format output with indent
+
+# obtain specific h2 tags:
+h2_objects = soup_content.find_all('h2', {"class": "css-m604qf"})
+print(h2_objects)
 
 print("Done!")
