@@ -101,6 +101,39 @@ def extract_postingDates(soup_content):
     for object in posting_dates_object:
         posting_dates.append(object.findChildren("div")[0].text)
         
-    print(posting_dates)
     return posting_dates
     
+
+def extract_jobTypes(soup_content):
+    """extract job types from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted job types
+    """
+    
+    # create a list to be returned:
+    job_types = list()
+    
+    # find all objects of a specific class:
+    job_types_object = soup_content.find_all("div", {"class":"css-1lh32fc"})
+    
+    # NOTE: ("css-1lh32fc") is the class name for <div> element which contains:
+    #       1. <a> :    for job type ... which in turn contains:
+    #           a. <span> : for job type text
+    
+    # NOTE: each job may have more than one job type.
+        
+    # extract job types:
+    for object in job_types_object:
+        # construct single job types list:
+        single_job = list()
+        for i in range(len(object.findChildren("a"))):
+            single_job.append(object.findChildren("a")[i].find("span").text)
+        # add single job types list into main job types list:
+        job_types.append(single_job)
+        
+    print(job_types)
+    return job_types

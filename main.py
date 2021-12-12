@@ -29,3 +29,6 @@ company_locations = extract_companyLocations(soup_content)
 
 # extract job posting dates:
 posting_dates = extract_postingDates(soup_content)
+
+# extract job types:
+job_types = extract_jobTypes(soup_content)
