@@ -69,6 +69,38 @@ def extract_companyLocations(soup_content):
     for i in range(len(company_locations_object)):
         company_locations.append(company_locations_object[i].text.strip())
         
-    print(company_locations)
     return company_locations
+    
+    
+def extract_postingDates(soup_content):
+    """extract job posting dates from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted job posting dates
+    """
+    
+    # create a list to be returned:
+    posting_dates = list()
+    
+    # find all objects of a specific class:
+    posting_dates_object = soup_content.find_all("div", {"class":"css-d7j1kk"})
+    
+    # NOTE: ("css-d7j1kk") is the class name for <div> element which contains:
+    #       1. <a> :    for company name
+    #       2. <span> : for company location
+    #       3. <div> :  for posting date
+    
+    # NOTE: date has two different classes ... so, I'm trying different solution to obtain posting dates.
+    #       the two classes are: ("css-4c4ojb"), and ("css-do6t5g")
+    #       and there may be many otehrs! who knows!
+    
+    # extract job posting dates:
+    for object in posting_dates_object:
+        posting_dates.append(object.findChildren("div")[0].text)
+        
+    print(posting_dates)
+    return posting_dates
     
