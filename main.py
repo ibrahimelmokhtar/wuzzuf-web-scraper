@@ -1,5 +1,6 @@
 from check_userInput import *
 from searchQuery import *
+from extract_info import *
 import requests
 from bs4 import BeautifulSoup
 
@@ -17,8 +18,7 @@ page_content = requests.get(job_url).content
 # parse markup page content using "lxml" parser:
 soup_content = BeautifulSoup(page_content, "lxml")
 
-# obtain specific h2 tags:
-h2_objects = soup_content.find_all('h2', {"class": "css-m604qf"})
-print(h2_objects)
+# extract company names:
+company_names = extract_companyNames(soup_content)
 
 print("Done!")
