@@ -135,5 +135,29 @@ def extract_jobTypes(soup_content):
         # add single job types list into main job types list:
         job_types.append(single_job)
         
-    print(job_types)
     return job_types
+
+
+def extract_careerLevels(soup_content):
+    
+    """extract career levels from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted career levels
+    """
+    
+    # create a list to be returned:
+    career_levels = list()
+    
+    # find all objects of a specific class:
+    required_years_object = soup_content.find_all("div", {"class":"css-y4udm8"})
+    
+    # extract career levels:
+    for i in range(len(required_years_object)):
+        career_levels.append(required_years_object[i].find_all("a", {"class":"css-o171kl"})[0].text)
+        
+    print(career_levels)
+    return career_levels
