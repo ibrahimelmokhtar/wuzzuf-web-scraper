@@ -23,3 +23,6 @@ job_titles = extract_jobTitles(soup_content)
 
 # extract company names:
 company_names = extract_companyNames(soup_content)
+
+# extract company locations:
+company_locations = extract_companyLocations(soup_content)

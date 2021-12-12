@@ -19,9 +19,7 @@ def extract_jobTitles(soup_content):
     for i in range(len(job_titles_object)):
         job_titles.append(job_titles_object[i].text)
                  
-    print(job_titles)
     return job_titles
-
 
 
 def extract_companyNames(soup_content):
@@ -50,3 +48,27 @@ def extract_companyNames(soup_content):
     return company_names
 
 
+def extract_companyLocations(soup_content):
+    """extract company locations from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted company locations
+    """
+    
+    # find all objects of a specific class:
+    company_locations_object = soup_content.find_all("span", {"class":"css-5wys0k"})
+    
+    # create a list to be returned:
+    company_locations = list()
+    
+    # format company locations:
+    # by removing (" ") at the end of each company name
+    for i in range(len(company_locations_object)):
+        company_locations.append(company_locations_object[i].text.strip())
+        
+    print(company_locations)
+    return company_locations
+    
