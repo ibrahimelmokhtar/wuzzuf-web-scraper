@@ -18,7 +18,8 @@ page_content = requests.get(job_url).content
 # parse markup page content using "lxml" parser:
 soup_content = BeautifulSoup(page_content, "lxml")
 
+# extract job titles:
+job_titles = extract_jobTitles(soup_content)
+
 # extract company names:
 company_names = extract_companyNames(soup_content)
-
-print("Done!")
