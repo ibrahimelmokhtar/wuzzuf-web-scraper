@@ -203,5 +203,6 @@ def extract_yearsOfExperience(soup_content):
             
         years_of_experience.append(single_year)
         
-    print(years_of_experience)
     return years_of_experience
+
+
