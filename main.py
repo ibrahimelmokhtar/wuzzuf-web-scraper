@@ -1,6 +1,6 @@
-from check_userInput import *
+from checkUserInput import *
 from searchQuery import *
-from extract_info import *
+from extractInfo import *
 import requests
 from bs4 import BeautifulSoup
 

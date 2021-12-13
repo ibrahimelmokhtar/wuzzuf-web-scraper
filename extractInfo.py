@@ -1,3 +1,4 @@
+from hasNumbers import *    # used with (years of experience) extraction
 
 def extract_jobTitles(soup_content):
     """extract job titles from a soup object
@@ -188,9 +189,10 @@ def extract_yearsOfExperience(soup_content):
         #       so, loop through its characters to check if there is any digits in it or not
         #       when you find any digit, take that position as years of experience position
         position = 0
-        while not any(char.isdigit() for char in spanChildren[position].text):
+        while not has_numbers(spanChildren[position].text):
+            print("pos: {} :::\n {}".format(position, spanChildren[position].text))
             position += 1
-        
+        print("\n\n")
         # format years of experience:
         # by removing (". ") at the start, and ("Yrs of Exp") at the end
         # final look (for example): ("0 - 2")
