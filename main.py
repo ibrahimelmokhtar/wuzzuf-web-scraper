@@ -1,4 +1,5 @@
 from checkUserInput import *
+from saveIntoFile import save_into_csv
 from searchQuery import *
 from wuzzufAPI import *
 import requests
@@ -20,4 +21,8 @@ soup_content = BeautifulSoup(page_content, "lxml")
 
 # extract specific data from wuzzuf.net:
 data = wuzzuf_api(soup_content)
-print(data)
+
+# save found data into .csv file:
+save_into_csv(desired_job, data)
+
+print("\nDone !!\n")
