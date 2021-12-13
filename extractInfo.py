@@ -189,15 +189,18 @@ def extract_yearsOfExperience(soup_content):
         #       so, loop through its characters to check if there is any digits in it or not
         #       when you find any digit, take that position as years of experience position
         position = 0
-        while not has_numbers(spanChildren[position].text):
-            print("pos: {} :::\n {}".format(position, spanChildren[position].text))
-            position += 1
-        print("\n\n")
-        # format years of experience:
-        # by removing (". ") at the start, and ("Yrs of Exp") at the end
-        # final look (for example): ("0 - 2")
-        single_year = spanChildren[position].text.split(" ")
-        single_year = " ".join(single_year[1:-3])
+        try:
+            while not has_numbers(spanChildren[position].text):
+                position += 1
+            # format years of experience:
+            # by removing (". ") at the start, and ("Yrs of Exp") at the end
+            # final look (for example): ("0 - 2")
+            single_year = spanChildren[position].text.split(" ")
+            single_year = " ".join(single_year[1:-3])
+        except:
+            print("404: (years of experience) NOT FOUND!")
+            single_year = ""    # put empty string in its job place
+            
         years_of_experience.append(single_year)
         
     print(years_of_experience)
