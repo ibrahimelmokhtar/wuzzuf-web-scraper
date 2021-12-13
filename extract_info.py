@@ -159,5 +159,44 @@ def extract_careerLevels(soup_content):
     for i in range(len(required_years_object)):
         career_levels.append(required_years_object[i].find_all("a", {"class":"css-o171kl"})[0].text)
         
-    print(career_levels)
     return career_levels
+
+
+def extract_yearsOfExperience(soup_content):
+    
+    """extract years of experience from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted years of experience
+    """
+    
+    # create a list to be returned:
+    years_of_experience = list()
+    
+    # find all objects of a specific class:
+    years_of_experience_object = soup_content.find_all("div", {"class":"css-y4udm8"})
+    
+    # extract years of experience:
+    for i in range(len(years_of_experience_object)):
+        spanChildren = years_of_experience_object[i].findChildren("span")
+        
+        # NOTE: years of experience position depends on number of job types:
+        #       job types: ("Full Time", "Part Time", "Freelance/Project", ... etc.)
+        #       so, loop through its characters to check if there is any digits in it or not
+        #       when you find any digit, take that position as years of experience position
+        position = 0
+        while not any(char.isdigit() for char in spanChildren[position].text):
+            position += 1
+        
+        # format years of experience:
+        # by removing (". ") at the start, and ("Yrs of Exp") at the end
+        # final look (for example): ("0 - 2")
+        single_year = spanChildren[position].text.split(" ")
+        single_year = " ".join(single_year[1:-3])
+        years_of_experience.append(single_year)
+        
+    print(years_of_experience)
+    return years_of_experience

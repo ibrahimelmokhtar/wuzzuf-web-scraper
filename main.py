@@ -35,3 +35,6 @@ job_types = extract_jobTypes(soup_content)
 
 # extract career levels:
 career_levels = extract_careerLevels(soup_content)
+
+# extract years of experience:
+years_of_experience = extract_yearsOfExperience(soup_content)
