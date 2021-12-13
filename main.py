@@ -19,4 +19,5 @@ page_content = requests.get(job_url).content
 soup_content = BeautifulSoup(page_content, "lxml")
 
 # extract specific data from wuzzuf.net:
-fetch_data(soup_content)
+data = wuzzuf_api(soup_content)
+print(data)
