@@ -1,5 +1,5 @@
 from checkUserInput import *
-from saveIntoFile import save_into_csv
+from saveIntoFile import *
 from searchQuery import *
 from wuzzufAPI import *
 import requests
@@ -20,9 +20,10 @@ page_content = requests.get(job_url).content
 soup_content = BeautifulSoup(page_content, "lxml")
 
 # extract specific data from wuzzuf.net:
-data = wuzzuf_api(soup_content)
+data_found = wuzzuf_api(soup_content)
 
 # save found data into .csv file:
-save_into_csv(desired_job, data)
+save_into_csv(desired_job, data_found)
 
-print("\nDone !!\n")
+# print number of jobs found:
+count_found_jobs(data_found)
