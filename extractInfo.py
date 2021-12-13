@@ -206,3 +206,27 @@ def extract_yearsOfExperience(soup_content):
     return years_of_experience
 
 
+def extract_jobLinks(soup_content):
+    """extract job links from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted job links
+    """
+    
+    # find all objects of a specific class:
+    job_links_object = soup_content.find_all("h2", {"class":"css-m604qf"})
+    
+    # create a list to be returned:
+    job_links = list()
+    
+    # extract job links:
+    for i in range(len(job_links_object)):
+        # format job link to be re-usable:
+        job_link = "https://wuzzuf.net{}".format(job_links_object[i].find("a").attrs["href"])
+        job_links.append(job_link)
+    
+    return job_links
+

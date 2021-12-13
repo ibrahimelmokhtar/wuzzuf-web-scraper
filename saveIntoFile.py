@@ -40,7 +40,7 @@ def save_into_csv(desired_job, data_found):
         
         # write header names:
         csv_writer.writerow(["Job Title", "Company Name", "Company Location", "Posting Date", \
-                            "Job Types", "Career Level", "Years of Experience"])
+                            "Job Types", "Career Level", "Years of Experience", "Job Link"])
         
         # start writting details for each job:
         count = 0
@@ -49,5 +49,5 @@ def save_into_csv(desired_job, data_found):
             csv_writer.writerow([job_data["job_title"], job_data["company_name"], \
                                 job_data["company_location"], job_data["posting_date"], \
                                 job_data["job_types"], job_data["career_level"], \
-                                job_data["years_of_experience"]])
+                                job_data["years_of_experience"], job_data["job_link"]])
             

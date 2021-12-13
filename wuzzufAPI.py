@@ -31,8 +31,12 @@ def fetch_data(soup_content):
     # extract years of experience:
     years_of_experience = extract_yearsOfExperience(soup_content)
     
+    # extract job links:
+    job_links = extract_jobLinks(soup_content)
+    
+    
     return  job_titles, company_names, company_locations, \
-            posting_dates, job_types, career_levels, years_of_experience
+            posting_dates, job_types, career_levels, years_of_experience, job_links
             
 
 def wuzzuf_api(soup_content):
@@ -50,7 +54,7 @@ def wuzzuf_api(soup_content):
     
      # desired data to be collected:
     job_titles, company_names, company_locations, \
-        posting_dates, job_types, career_levels, years_of_experience = fetch_data(soup_content)
+        posting_dates, job_types, career_levels, years_of_experience, job_links = fetch_data(soup_content)
     
     # construct a dictionary for each job:
     for i in range(len(job_titles)):
@@ -62,5 +66,6 @@ def wuzzuf_api(soup_content):
         data[i]["job_types"] = job_types[i]
         data[i]["career_level"] = career_levels[i]
         data[i]["years_of_experience"] = years_of_experience[i]
+        data[i]["job_link"] = job_links[i]
         
     return data
