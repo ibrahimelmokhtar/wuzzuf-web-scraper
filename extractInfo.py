@@ -198,13 +198,13 @@ def extract_yearsOfExperience(soup_content):
             # by removing (". ") at the start, and ("Yrs of Exp") at the end
             # final look (for example): ("0 - 2")
             single_year = spanChildren[position].text.split(" ")
-            single_year = " ".join(single_year[1:-3])
+            single_year = " ".join(single_year[1:]).strip()
         except:
             print("404: (years of experience) NOT FOUND!")
             single_year = ""    # put empty string in its job place
             
         years_of_experience.append(single_year)
-        
+    
     return years_of_experience
 
 
@@ -256,10 +256,14 @@ def extract_jobRequirements(job_links):
         # find all objects of a specific class:        
         job_requirements_object = soup_content.find_all("div", {"class":"css-1t5f0fr"})
         
+        # format job requirements:
         single_job = str()
         requirements = job_requirements_object[0].findChildren("li")
         for i in range(len(requirements)):
-            single_job += requirements[i].text.strip() + "\n"
+            single_job += requirements[i].text.strip()
+            if i != len(requirements)-1:
+                single_job += " | "
+        
         job_requirements.append(single_job.strip())
     
     return job_requirements
