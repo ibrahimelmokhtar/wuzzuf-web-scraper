@@ -13,6 +13,7 @@ def format_file_name(desired_job):
     date_now = "-".join(date_now)
     
     file_name = str("{} {}".format(date_now, desired_job))
+    print("Saving into file: {}".format(file_name))
     
     return file_name
 
@@ -34,20 +35,20 @@ def save_into_csv(desired_job, data_found):
     # construct file name:
     file_name = format_file_name(desired_job) + ".csv"
 
-    with open(file_name, 'w') as csv_file:
+    with open(file_name, 'w', encoding="utf-8") as csv_file:
         # create csv writer object:
         csv_writer = csv.writer(csv_file)
         
         # write header names:
         csv_writer.writerow(["Job Title", "Company Name", "Company Location", "Posting Date", \
-                            "Job Types", "Career Level", "Years of Experience", "Job Link"])
+                            "Job Types", "Career Level", "Years of Experience", \
+                            "Job Link", "Job Requirements"])
         
         # start writting details for each job:
-        count = 0
         for _, job_data in data_found.items():
-            count += 1
             csv_writer.writerow([job_data["job_title"], job_data["company_name"], \
                                 job_data["company_location"], job_data["posting_date"], \
                                 job_data["job_types"], job_data["career_level"], \
-                                job_data["years_of_experience"], job_data["job_link"]])
+                                job_data["years_of_experience"], \
+                                job_data["job_link"], job_data["job_requirements"]])
             

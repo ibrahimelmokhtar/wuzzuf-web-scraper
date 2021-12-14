@@ -1,4 +1,6 @@
 from hasNumbers import *    # used with (years of experience) extraction
+import requests
+from bs4 import BeautifulSoup
 
 def extract_jobTitles(soup_content):
     """extract job titles from a soup object
@@ -229,4 +231,36 @@ def extract_jobLinks(soup_content):
         job_links.append(job_link)
     
     return job_links
+
+
+def extract_jobRequirements(job_links):
+    """extract job requirements from a soup object within given job links
+
+    Args:
+        job_links (List): contains links for desired jobs
+
+    Returns:
+        list: extracted job requiremrnts
+    """
+    
+    # create a list to be returned:
+    job_requirements = list()
+    
+    for job_link in job_links:
+        # fetch the obrained URL, then get page content:
+        page_content = requests.get(job_link).content
+
+        # parse markup page content using "lxml" parser:
+        soup_content = BeautifulSoup(page_content, "lxml")
+
+        # find all objects of a specific class:        
+        job_requirements_object = soup_content.find_all("div", {"class":"css-1t5f0fr"})
+        
+        single_job = str()
+        requirements = job_requirements_object[0].findChildren("li")
+        for i in range(len(requirements)):
+            single_job += requirements[i].text.strip() + "\n"
+        job_requirements.append(single_job.strip())
+    
+    return job_requirements
 
