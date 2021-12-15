@@ -10,7 +10,8 @@ desired_job = input("Enter job title: ")
 check_jobTitle(desired_job)
 
 # set a search query on "wuzzuf.net":
-job_url = set_searchQuery(desired_job)
+page_number = 0
+job_url = set_searchQuery(desired_job, page_number)
 print(job_url)
 
 # fetch the obrained URL, then get page content:
