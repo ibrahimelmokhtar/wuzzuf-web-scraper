@@ -19,6 +19,9 @@ page_content = requests.get(job_url).content
 # parse markup page content using "lxml" parser:
 soup_content = BeautifulSoup(page_content, "lxml")
 
+# extract total number of jobs found:
+total_jobs = extract_totalJobNumber(soup_content)
+
 # extract specific data from wuzzuf.net:
 data_found = wuzzuf_api(soup_content)
 

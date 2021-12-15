@@ -268,3 +268,22 @@ def extract_jobRequirements(job_links):
     
     return job_requirements
 
+
+def extract_totalJobNumber(soup_content):
+    """extract total jobs from a soup object
+
+    Args:
+        soup_content (BeautifulSoup Object): contains parsed BeautifulSoup information
+
+    Returns:
+        list: extracted total number of jobs found
+    """
+    
+    # find all objects of a specific class:
+    total_jobs_object = soup_content.find("span", {"class":"css-xkh9ud"}).findChildren("strong")
+    
+    # extract total number of jobs:
+    total_jobs = int(total_jobs_object[0].text)
+    
+    return total_jobs
+
