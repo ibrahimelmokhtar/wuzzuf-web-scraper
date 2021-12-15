@@ -18,9 +18,7 @@ def create_directory(file_type):
     # create directory if it does NOT exist:
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
-    else:
-        print("directory already exists ...")
-        
+   
 
 def format_file_name(desired_job, file_type):
     """format file name without file extension (for example: ".txt", ".csv", ... etc.)
@@ -92,5 +90,6 @@ def save_into_csv(desired_job, data_found):
                                 job_data["company_location"], job_data["posting_date"], \
                                 job_data["job_types"], job_data["career_level"], \
                                 job_data["years_of_experience"], \
-                                job_data["job_link"], job_data["job_requirements"]])
+                                job_data["job_link"]])
+            # , job_data["job_requirements"]
             
