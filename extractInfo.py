@@ -283,7 +283,15 @@ def extract_totalJobNumber(soup_content):
     total_jobs_object = soup_content.find("span", {"class":"css-xkh9ud"}).findChildren("strong")
     
     # extract total number of jobs:
-    total_jobs = int(total_jobs_object[0].text)
+    total_jobs_text = total_jobs_object[0].text
+    
+    # format found text by removing "," within it:
+    if "," in total_jobs_text:
+        total_jobs_text = total_jobs_text.split(",")
+        total_jobs_text = "".join(total_jobs_text)
+    
+    # convert found text into integer value:
+    total_jobs = int(total_jobs_text)
     
     return total_jobs
 

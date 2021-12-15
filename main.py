@@ -23,11 +23,12 @@ soup_content = BeautifulSoup(page_content, "lxml")
 # extract total number of jobs found:
 total_jobs = extract_totalJobNumber(soup_content)
 
+# print number of jobs found:
+print("Number of jobs found: {}".format(total_jobs))
+
 # extract specific data from wuzzuf.net:
 data_found = wuzzuf_api(soup_content)
 
 # save found data into .csv file:
 save_into_csv(desired_job, data_found)
 
-# print number of jobs found:
-count_found_jobs(data_found)
