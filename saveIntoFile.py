@@ -47,17 +47,23 @@ def format_file_name(desired_job, file_type):
     return file_path
 
 
-def count_found_jobs(data_found):
+def count_found_jobs(data_found, print_message=True):
     """count jobs found on wuzzuf.net for specific keyword
 
     Args:
         data_found (dict): constructed dictionary contains found data on wuzzuf.net
+
+    Returns:
+        Int: number of jobs found
     """
     # get jobs' number:
     count = len(data_found.keys())
     
-    # print message:
-    print("Number of jobs found: {}".format(count))
+    if print_message == True:
+        # print message:
+        print("Number of jobs found: {}".format(count))
+    
+    return count
 
 
 def save_into_csv(desired_job, data_found):
