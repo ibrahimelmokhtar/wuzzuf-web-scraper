@@ -32,8 +32,8 @@ def format_file_name(desired_job, file_type):
     """
     
     # format file name using current date and time:
-    date_now = str(datetime.now()).split(":")
-    date_now = "-".join(date_now)
+    date_now = str(datetime.now()).split(" ")
+    date_now = date_now[0]
     
     file_name = str("{} {}".format(date_now, desired_job))
     print("Saving into file: {}".format(file_name))
