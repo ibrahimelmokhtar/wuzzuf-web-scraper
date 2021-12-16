@@ -36,13 +36,15 @@ def format_file_name(desired_job, file_type):
     date_now = date_now[0]
     
     file_name = str("{} {}".format(date_now, desired_job))
-    print("Saving into file: {}".format(file_name))
     
     # get the directory of this script:
     base_directory = os.path.dirname(__file__)
     
     # format the name of the path to be created:
-    file_path = r'{}\\{}\\{}'.format(base_directory, file_type, file_name)
+    file_path = "{}\{}\{}".format(base_directory, file_type, file_name)
+    
+    #display message for the user:
+    print("\nSaving into:\n\t{}\n".format(file_path))
     
     return file_path
 
@@ -96,6 +98,5 @@ def save_into_csv(desired_job, data_found):
                                 job_data["company_location"], job_data["posting_date"], \
                                 job_data["job_types"], job_data["career_level"], \
                                 job_data["years_of_experience"], \
-                                job_data["job_link"]])
-            # , job_data["job_requirements"]
+                                job_data["job_link"], job_data["job_requirements"]])
             

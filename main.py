@@ -25,7 +25,7 @@ def main():
     
     # display a message for the user:
     print("The program took:\n\t{}\t\t... formated as (hr : min : sec)".format(execution_time))
-    print("to obtain ({}) job results".format(count_found_jobs(data_found, False)))
+    print("to obtain ({}) job results\n".format(count_found_jobs(data_found, False)))
 
 
 # entry point:

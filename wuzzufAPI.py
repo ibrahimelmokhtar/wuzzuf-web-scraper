@@ -115,7 +115,7 @@ def fetch_data(desired_job, page_number=0):
             job_requirements.append(job_requirement)
         
         page_number += 1
-            
+    
     return  job_titles, company_names, company_locations, \
             posting_dates, job_types, career_levels, \
                 years_of_experience, job_links, job_requirements
@@ -150,6 +150,6 @@ def wuzzuf_api(desired_job, page_number=0):
         data[i]["career_level"] = career_levels[i]
         data[i]["years_of_experience"] = years_of_experience[i]
         data[i]["job_link"] = job_links[i]
-        # data[i]["job_requirements"] = job_requirements[i]
+        data[i]["job_requirements"] = job_requirements[i]
         
     return data
