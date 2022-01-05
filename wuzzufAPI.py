@@ -67,53 +67,46 @@ def fetch_data(desired_job, page_number=0):
         # get soup content for specific page:
         soup_content = get_single_page(desired_job, page_number)
         
-        # extract job titles:
+        # # extract job titles:
         single_page_titles = extract_jobTitles(soup_content)
-        for job_title in single_page_titles:
-            job_titles.append(job_title)
-
-        # extract company names:
+        
+        # # extract company names:
         single_page_companies = extract_companyNames(soup_content)
-        for company_name in single_page_companies:
-            company_names.append(company_name)
-
-
-        # extract company locations:
+        
+        # # extract company locations:
         single_page_locations = extract_companyLocations(soup_content)
-        for company_location in single_page_locations:
-            company_locations.append(company_location)
-
-        # extract job posting dates:
+        
+        # # extract job posting dates:
         single_page_dates = extract_postingDates(soup_content)
-        for posting_date in single_page_dates:
-            posting_dates.append(posting_date)
 
-        # extract job types:
+        # # extract job types:
         single_page_job_types = extract_jobTypes(soup_content)
-        for job_type in single_page_job_types:
-            job_types.append(job_type)
-
-        # extract career levels:
+        
+        # # extract career levels:
         single_page_career_levels = extract_careerLevels(soup_content)
-        for career_level in single_page_career_levels:
-            career_levels.append(career_level)
-
-        # extract years of experience:
+            
+        # # extract years of experience:
         single_page_experiences = extract_yearsOfExperience(soup_content)
-        for year in single_page_experiences:
-            years_of_experience.append(year)
         
-        # extract job links:
+        # # extract job links:
         single_page_links = extract_jobLinks(soup_content)
-        for job_link in single_page_links:
-            job_links.append(job_link)
         
-        # extract job requirements:
-        # job_requirements.append(extract_jobRequirements(job_links))
+        # # extract job requirements:
         single_page_requirements = extract_jobRequirements(single_page_links)
-        for job_requirement in single_page_requirements:
-            job_requirements.append(job_requirement)
         
+        # append the found results of the current page:
+        for i in range(len(single_page_titles)):
+            job_titles.append(single_page_titles[i])
+            company_names.append(single_page_companies[i])
+            company_locations.append(single_page_locations[i])
+            posting_dates.append(single_page_dates[i])
+            job_types.append(single_page_job_types[i])
+            career_levels.append(single_page_career_levels[i])
+            years_of_experience.append(single_page_experiences[i])
+            job_links.append(single_page_links[i])
+            job_requirements.append(single_page_requirements[i])
+
+        # get the next page:
         page_number += 1
     
     return  job_titles, company_names, company_locations, \
